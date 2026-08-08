@@ -61,12 +61,6 @@ RUN if [ "$ENABLE_PYTORCH_UPGRADE" = "true" ]; then \
       uv pip install --force-reinstall torch torchvision torchaudio --index-url ${PYTORCH_INDEX_URL}; \
     fi
     
-# Custom nodes for FinePorn/Krea2 workflow
-RUN cd /comfyui/custom_nodes && \
-    git clone --depth 1 https://github.com/rgthree/rgthree-comfy && \
-    git clone --depth 1 https://github.com/yolain/ComfyUI-Easy-Use && \
-    git clone --depth 1 https://github.com/ClownsharkBatwing/RES4LYF
-    
 # comfy-cli installs ComfyUI into its own workspace venv (/comfyui/.venv), but
 # start.sh launches ComfyUI with /opt/venv's python. That mismatch leaves the
 # launch venv missing ComfyUI's runtime deps (e.g. sqlalchemy, pulled in by
